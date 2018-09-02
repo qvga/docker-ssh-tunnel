@@ -19,9 +19,11 @@
             ports:
                 - "8088:80"
             links:
-                database_x:db
+                - database_x:db
             environment:
                 WEB_DOCUMENT_ROOT: /var/www/public
+                DB_HOST: db
+                DB_PORT: 3306
     
         database_x:
             image: qvga/ssh-tunnel
@@ -31,4 +33,4 @@
                 L: 3306:127.0.0.1:3306 #bind port and forward-to host:port (same as ssh -L option)
                 R: jakob@example.com #machine hosting the db. (same as ssh -R option)
 
-##### access database at db:3306 from within container webservice_x
+##### Access database at `db:3306` from within container webservice_x
